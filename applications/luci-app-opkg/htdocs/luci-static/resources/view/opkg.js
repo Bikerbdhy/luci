@@ -329,10 +329,9 @@ function display(pattern)
 	for (var i = 0; i < pagers.length; i++) {
 		pagers[i].parentNode.style.display = '';
 		pagers[i].setAttribute('data-offset', 100);
-
-		if (i == 0)
-			handlePage({ target: pagers[i].querySelector('.prev') });
 	}
+
+	handlePage({ target: pagers[0].querySelector('.prev') });
 }
 
 function handlePage(ev)
@@ -601,7 +600,7 @@ function renderDependencies(depends, info, flat)
 		if (deps[i] === 'libc')
 			continue;
 
-		if (deps[i].match(/^(.+)\s+\((<=|>=|<<|>>|<|>|=)(.+)\)$/)) {
+		if (deps[i].match(/^(.+?)\s+\((<=|>=|<<|>>|<|>|=)(.+?)\)/)) {
 			dep = RegExp.$1.trim();
 			vop = RegExp.$2.trim();
 			ver = RegExp.$3.trim();
